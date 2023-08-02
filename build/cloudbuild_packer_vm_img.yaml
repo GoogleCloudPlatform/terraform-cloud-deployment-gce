@@ -1,0 +1,68 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+steps:
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    id: "Remove app image"
+    env:
+      - VM_IMAGE_NAME=$_VM_IMAGE_NAME
+    script: |
+      if [ -z $(gcloud compute images describe ${VM_IMAGE_NAME} --verbosity=none --format=text) ]; then
+        echo "The image does not exist. Proceeding with next build step."
+      else
+        echo "Deleting the image."
+        gcloud compute images delete ${VM_IMAGE_NAME} -q --verbosity=none
+      fi
+
+  - name: 'gcr.io/${_PACKER_BUILDER_PROJECT}/packer'
+    dir: 'build/config'
+    args:
+      - init
+      - .
+
+  - name: 'gcr.io/${_PACKER_BUILDER_PROJECT}/packer'
+    dir: 'build/config'
+    args:
+      - build
+      - -var
+      - project_id=$PROJECT_ID
+      - -var
+      - region=$_LOCATION
+      - -var
+      - zone=$_ZONE
+      - -var
+      - img_name=$_VM_IMAGE_NAME
+      - -var
+      - img_desc=Jss cd image from Packer which is triggered by Cloud Build
+      - -var
+      - file_install_package_sh=../tools/install_package.sh
+      - -var
+      - file_docker_compose_yml=../tools/docker-compose.yml
+      - .
+
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    id: "Public app image"
+    env:
+      - VM_IMAGE_NAME=$_VM_IMAGE_NAME
+    script: |
+      gcloud compute images add-iam-policy-binding ${VM_IMAGE_NAME} --member='allAuthenticatedUsers' --role='roles/compute.imageUser'
+
+substitutions:
+  _LOCATION: "us-central1"
+  _ZONE: "us-central1-a"
+  _VM_IMAGE_NAME: "jss-cd-gce-vm-image"
+  _PACKER_BUILDER_PROJECT: "hsa-public"
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,18 @@
+#! /bin/bash
+
+export LDS_REST_PORT=${LDS_REST_PORT}
+export LDS_PROJECT=$(gcloud config get-value project)
+export LDS_BUCKET=${LDS_BUCKET}
+export LDS_RESOURCE_PATH=/resource
+export LDS_REST_URL=http://host.docker.internal:$${LDS_REST_PORT}
+export LDS_MYSQL_INSTANCE=${LDS_MYSQL_INSTANCE}
+export LDS_MYSQL_DATABASE=${LDS_MYSQL_DATABASE}
+export LDS_MYSQL_USERNAME=${LDS_MYSQL_USERNAME}
+export FRONTEND_VERSION_TAG=${FRONTEND_VERSION_TAG}
+export DATA_INIT_BUCKET_NAME=${DATA_INIT_BUCKET_NAME}
+export DATA_INIT_FILE_NAME=${DATA_INIT_FILE_NAME}
+
+MYSQL_PASSWORD="$(gcloud secrets versions access --secret ${MYSQL_DB_PASSWORD_SECRET} latest --project $${LDS_PROJECT})"
+export LDS_MYSQL_PASSWORD=$${MYSQL_PASSWORD}
+
+docker-compose up -d api web

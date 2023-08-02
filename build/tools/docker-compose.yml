@@ -1,0 +1,53 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+version: '3.9'
+services:
+  api:
+    image: gcr.io/hsa-public/jss-cd-gce-backend:latest
+    container_name: lds-api
+    environment:
+      - LDS_BUCKET=${LDS_BUCKET}
+      - LDS_RESOURCE_PATH=${LDS_RESOURCE_PATH}
+      - LDS_REST_PORT=${LDS_REST_PORT}
+      - LDS_MYSQL_INSTANCE=${LDS_MYSQL_INSTANCE}
+      - LDS_MYSQL_DATABASE=${LDS_MYSQL_DATABASE}
+      - LDS_MYSQL_USERNAME=${LDS_MYSQL_USERNAME}
+      - LDS_MYSQL_PASSWORD=${LDS_MYSQL_PASSWORD}
+      - DATA_INIT_BUCKET_NAME=${DATA_INIT_BUCKET_NAME}
+      - DATA_INIT_FILE_NAME=${DATA_INIT_FILE_NAME}
+    ports:
+      - ${LDS_REST_PORT}:${LDS_REST_PORT}
+    networks:
+      - lds
+    logging:
+      driver: gcplogs
+
+  web:
+    image: gcr.io/hsa-public/jss-cd-gce-frontend:${FRONTEND_VERSION_TAG}
+    container_name: lds-web
+    environment:
+      - LDS_REST_URL=${LDS_REST_URL}
+    ports:
+      - '80:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - lds
+    logging:
+      driver: gcplogs
+
+networks:
+  lds:
+    driver: bridge
