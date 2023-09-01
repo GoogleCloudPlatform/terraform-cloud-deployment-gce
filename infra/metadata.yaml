@@ -28,6 +28,10 @@ spec:
     description:
       tagline: Deploy a change to a live stateful service without disrupting downstream customers (Java on GCE)
       detailed: This solution showcases a live feature change on a Java app, deployed to customers using blue-green managed instance group deployments.
+    deploymentDuration:
+      configurationSecs: 60
+      deploymentSecs: 300
+
   content:
     subBlueprints:
     - name: backend-config
