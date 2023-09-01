@@ -1,0 +1,100 @@
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-cloud-deployment-gce
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Cloud Deployment on GCE
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce.git
+      sourceType: git
+      dir: /infra/
+    description:
+      tagline: Deploy a change to a live stateful service without disrupting downstream customers (Java on GCE)
+      detailed: This solution showcases a live feature change on a Java app, deployed to customers using blue-green managed instance group deployments.
+  content:
+    subBlueprints:
+    - name: backend-config
+      location: modules/load-balancer/backend-config
+    - name: database
+      location: modules/database
+    - name: frontend-config
+      location: modules/load-balancer/frontend-config
+    - name: networking
+      location: modules/networking
+    - name: storage
+      location: modules/storage
+    - name: vm-container
+      location: modules/vm-container
+    examples:
+    - name: simple_example
+      location: examples/simple_example
+  interfaces:
+    variables:
+    - name: bucket_location
+      description: Bucket location where the uploaded files will be stored.
+      varType: string
+      defaultValue: US
+    - name: data_init_archive_file_name
+      description: Name of the archive file that contains the initialization data.
+      varType: string
+      defaultValue: initialization.tar.gz
+    - name: data_init_bucket_name
+      description: Name of the Cloud Storage bucket that store the archive file for initialization.
+      varType: string
+      defaultValue: jss-resources
+    - name: labels
+      description: A map of key/value label pairs to assign to the cloud resources.
+      varType: map(string)
+      defaultValue:
+        app: cloud-deployment-gce-java
+    - name: project_id
+      description: GCP project ID.
+      varType: string
+      defaultValue: null
+      required: true
+    - name: region
+      description: GCP region where the cloud resource will be created.
+      varType: string
+      defaultValue: us-central1
+    - name: source_image
+      description: The source image used to create the instance.
+      varType: string
+      defaultValue: https://www.googleapis.com/compute/beta/projects/hsa-public/global/images/jss-cd-gce-vm-image
+    - name: zones
+      description: GCP zones where the cloud resource will be created.
+      varType: list(string)
+      defaultValue:
+      - us-central1-a
+    outputs:
+    - name: backend_bucket_name
+      description: The name of the backend bucket used for Cloud CDN
+    - name: blue_mig_load_balancer_ip
+      description: IP address of the blue version instance group
+    - name: blue_mig_self_link
+      description: Self link of the blue version instance group
+    - name: bucket_name
+      description: Bucket name
+    - name: green_mig_load_balancer_ip
+      description: IP address of the green version instance group
+    - name: green_mig_self_link
+      description: Self link of the green version instance group
+    - name: user_mig_load_balancer_ip
+      description: IP address of the user instance group
+  requirements:
+    roles:
+    - level: Project
+      roles:
+      - roles/storage.admin
+      - roles/iam.serviceAccountAdmin
+      - roles/resourcemanager.projectIamAdmin
+      - roles/editor
+      - roles/secretmanager.admin
+      - roles/servicenetworking.networksAdmin
+    services:
+    - cloudresourcemanager.googleapis.com
+    - iam.googleapis.com
+    - storage.googleapis.com
+    - serviceusage.googleapis.com
