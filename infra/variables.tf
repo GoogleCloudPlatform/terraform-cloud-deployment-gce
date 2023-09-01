@@ -63,7 +63,7 @@ variable "labels" {
 variable "data_init_bucket_name" {
   description = "Name of the Cloud Storage bucket that store the archive file for initialization."
   type        = string
-  default     = "lds-resources-236348946525"
+  default     = "jss-resources"
 }
 
 variable "data_init_archive_file_name" {
