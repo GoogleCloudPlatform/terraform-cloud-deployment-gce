@@ -50,7 +50,7 @@ variable "labels" {
 }
 
 variable "project_id" {
-  description = "GCP project ID."
+  description = "Google Cloud project ID."
   type        = string
 }
 

@@ -69,12 +69,12 @@ spec:
       defaultValue:
         app: cloud-deployment-gce-java
     - name: project_id
-      description: GCP project ID.
+      description: Google Cloud project ID.
       varType: string
       defaultValue: null
       required: true
     - name: region
-      description: GCP region where the cloud resource will be created.
+      description: Google Cloud region where the cloud resource will be created.
       varType: string
       defaultValue: us-central1
     - name: source_image
@@ -82,7 +82,7 @@ spec:
       varType: string
       defaultValue: https://www.googleapis.com/compute/beta/projects/hsa-public/global/images/jss-cd-gce-vm-image
     - name: zones
-      description: GCP zones where the cloud resource will be created.
+      description: Google Cloud zones where the cloud resource will be created.
       varType: list(string)
       defaultValue:
       - us-central1-a
