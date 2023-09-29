@@ -58,7 +58,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) v0.13
-- [Terraform Provider for GCP](https://registry.terraform.io/providers/hashicorp/google/latest/docs) plugin v4.57
+- [Terraform Provider for Google Cloud](https://registry.terraform.io/providers/hashicorp/google/latest/docs) plugin v4.57
 
 ### Service Account
 
@@ -88,5 +88,5 @@ resources of this module:
 Refer to the [contribution guidelines](CONTRIBUTING.md) for
 information on contributing to this module.
 
-[terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
+[terraform-provider-google-cloud]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
