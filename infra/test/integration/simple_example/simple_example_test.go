@@ -45,7 +45,10 @@ func TestSimpleExample(t *testing.T) {
 			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", blueMigSelflink), gcloudArgs)
 			isStable := mig.Get("status.isStable").Bool()
 			isLatest := mig.Get("status.versionTarget.isReached").Bool()
-			return !(isStable && isLatest), nil
+			if isStable && isLatest {
+				return false, nil
+			}
+			return true, fmt.Errorf("%s: isStable: %t, isLatest: %t", blueMigSelflink, isStable, isLatest)
 		}
 
 		utils.Poll(t, isBlueMigHealthy, 20, time.Second*21)
@@ -55,7 +58,10 @@ func TestSimpleExample(t *testing.T) {
 			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", greenMigSelflink), gcloudArgs)
 			isStable := mig.Get("status.isStable").Bool()
 			isLatest := mig.Get("status.versionTarget.isReached").Bool()
-			return !(isStable && isLatest), nil
+			if isStable && isLatest {
+				return false, nil
+			}
+			return true, fmt.Errorf("%s: isStable: %t, isLatest: %t", greenMigSelflink, isStable, isLatest)
 		}
 		utils.Poll(t, isGreenMigHealthy, 20, time.Second*22)
 
@@ -78,9 +84,9 @@ func TestSimpleExample(t *testing.T) {
 			resp, err := http.Get(greenMigLoadbalancerIp)
 			if err != nil || resp.StatusCode != 200 {
 				// retry if err or status not 200
-				return true, nil
+				return true, err
 			}
-			return false, err
+			return false, nil
 		}
 		utils.Poll(t, isGreenMigServing, 20, time.Second*24)
 
