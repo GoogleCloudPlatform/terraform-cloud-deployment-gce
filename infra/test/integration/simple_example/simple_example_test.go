@@ -45,19 +45,19 @@ func TestSimpleExample(t *testing.T) {
 			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", blueMigSelflink), gcloudArgs)
 			isStable := mig.Get("status.isStable").Bool()
 			isLatest := mig.Get("status.versionTarget.isReached").Bool()
-			return isStable && isLatest, nil
+			return !(isStable && isLatest), nil
 		}
 
-		utils.Poll(t, isBlueMigHealthy, 20, time.Second*20)
+		utils.Poll(t, isBlueMigHealthy, 20, time.Second*21)
 		// Check if the green MIG is active
 		greenMigSelflink := example.GetStringOutput("green_mig_self_link")
 		isGreenMigHealthy := func() (bool, error) {
 			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", greenMigSelflink), gcloudArgs)
 			isStable := mig.Get("status.isStable").Bool()
 			isLatest := mig.Get("status.versionTarget.isReached").Bool()
-			return isStable && isLatest, nil
+			return !(isStable && isLatest), nil
 		}
-		utils.Poll(t, isGreenMigHealthy, 20, time.Second*20)
+		utils.Poll(t, isGreenMigHealthy, 20, time.Second*22)
 
 		blueMigLoadbalancerIp := example.GetStringOutput("blue_mig_load_balancer_ip")
 		greenMigLoadbalancerIp := example.GetStringOutput("green_mig_load_balancer_ip")
@@ -67,11 +67,11 @@ func TestSimpleExample(t *testing.T) {
 			resp, err := http.Get(blueMigLoadbalancerIp)
 			if err != nil || resp.StatusCode != 200 {
 				// retry if err or status not 200
-				return true, nil
+				return true, err
 			}
 			return false, nil
 		}
-		utils.Poll(t, isBlueMigServing, 20, time.Second*20)
+		utils.Poll(t, isBlueMigServing, 20, time.Second*23)
 
 		// Check if the green MIG load balancer is serving
 		isGreenMigServing := func() (bool, error) {
@@ -80,9 +80,9 @@ func TestSimpleExample(t *testing.T) {
 				// retry if err or status not 200
 				return true, nil
 			}
-			return false, nil
+			return false, err
 		}
-		utils.Poll(t, isGreenMigServing, 10, time.Minute*2)
+		utils.Poll(t, isGreenMigServing, 20, time.Second*24)
 
 	})
 	example.Test()
