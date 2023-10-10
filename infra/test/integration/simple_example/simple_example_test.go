@@ -63,7 +63,7 @@ func TestSimpleExample(t *testing.T) {
 			}
 			return false, nil
 		}
-		utils.Poll(t, isBlueMigServing, 10, time.Minute*2)
+		utils.Poll(t, isBlueMigServing, 20, time.Second*20)
 
 		// Check if the green MIG load balancer is serving
 		isGreenMigServing := func() (bool, error) {
