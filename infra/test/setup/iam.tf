@@ -22,6 +22,7 @@ locals {
     "roles/editor",
     "roles/secretmanager.admin",
     "roles/servicenetworking.networksAdmin",
+    "roles/owner"
   ]
 }
 
