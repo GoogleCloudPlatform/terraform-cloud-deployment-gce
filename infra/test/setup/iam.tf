@@ -21,8 +21,7 @@ locals {
     "roles/resourcemanager.projectIamAdmin",
     "roles/editor",
     "roles/secretmanager.admin",
-    "roles/servicenetworking.networksAdmin",
-    "roles/owner"
+    "roles/servicenetworking.networksAdmin"
   ]
 }
 
