@@ -22,6 +22,9 @@ resource "google_compute_health_check" "cloud_deployment" {
   tcp_health_check {
     port = var.health_check_port
   }
+  log_config {
+    enable = true
+  }
 }
 
 resource "google_compute_backend_service" "cloud_deployment" {

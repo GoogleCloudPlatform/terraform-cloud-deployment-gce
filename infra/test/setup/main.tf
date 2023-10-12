@@ -30,5 +30,6 @@ module "project" {
     "iam.googleapis.com",
     "storage.googleapis.com",
     "serviceusage.googleapis.com",
+    "logging.googleapis.com",
   ]
 }

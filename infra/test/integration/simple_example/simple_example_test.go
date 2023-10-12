@@ -41,40 +41,54 @@ func TestSimpleExample(t *testing.T) {
 
 		// Check if the blue MIG is active
 		blueMigSelflink := example.GetStringOutput("blue_mig_self_link")
-		blueMig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", blueMigSelflink), gcloudArgs)
-		assert.True(blueMig.Get("status.isStable").Bool(), "expected blue MIG to be active")
-		assert.True(blueMig.Get("status.versionTarget.isReached").Bool(), "expected blue MIG to be serving the latest version")
+		isBlueMigHealthy := func() (bool, error) {
+			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", blueMigSelflink), gcloudArgs)
+			isStable := mig.Get("status.isStable").Bool()
+			isLatest := mig.Get("status.versionTarget.isReached").Bool()
+			if isStable && isLatest {
+				return false, nil
+			}
+			return true, fmt.Errorf("%s: isStable: %t, isLatest: %t", blueMigSelflink, isStable, isLatest)
+		}
 
+		utils.Poll(t, isBlueMigHealthy, 20, time.Second*21)
 		// Check if the green MIG is active
 		greenMigSelflink := example.GetStringOutput("green_mig_self_link")
-		greenMig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", greenMigSelflink), gcloudArgs)
-		assert.True(greenMig.Get("status.isStable").Bool(), "expected green MIG to be active")
-		assert.True(greenMig.Get("status.versionTarget.isReached").Bool(), "expected green MIG to be serving the latest version")
+		isGreenMigHealthy := func() (bool, error) {
+			mig := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed describe %s --region us-central1 --format=json", greenMigSelflink), gcloudArgs)
+			isStable := mig.Get("status.isStable").Bool()
+			isLatest := mig.Get("status.versionTarget.isReached").Bool()
+			if isStable && isLatest {
+				return false, nil
+			}
+			return true, fmt.Errorf("%s: isStable: %t, isLatest: %t", greenMigSelflink, isStable, isLatest)
+		}
+		utils.Poll(t, isGreenMigHealthy, 20, time.Second*22)
 
-		bludMigLoadbalancerIp := example.GetStringOutput("blue_mig_load_balancer_ip")
+		blueMigLoadbalancerIp := example.GetStringOutput("blue_mig_load_balancer_ip")
 		greenMigLoadbalancerIp := example.GetStringOutput("green_mig_load_balancer_ip")
 
 		// Check if the blue MIG load balancer is serving
 		isBlueMigServing := func() (bool, error) {
-			resp, err := http.Get(bludMigLoadbalancerIp)
+			resp, err := http.Get(blueMigLoadbalancerIp)
 			if err != nil || resp.StatusCode != 200 {
 				// retry if err or status not 200
-				return true, nil
+				return true, err
 			}
 			return false, nil
 		}
-		utils.Poll(t, isBlueMigServing, 20, time.Second*20)
+		utils.Poll(t, isBlueMigServing, 20, time.Second*23)
 
 		// Check if the green MIG load balancer is serving
 		isGreenMigServing := func() (bool, error) {
 			resp, err := http.Get(greenMigLoadbalancerIp)
 			if err != nil || resp.StatusCode != 200 {
 				// retry if err or status not 200
-				return true, nil
+				return true, err
 			}
 			return false, nil
 		}
-		utils.Poll(t, isGreenMigServing, 20, time.Second*20)
+		utils.Poll(t, isGreenMigServing, 20, time.Second*24)
 
 	})
 	example.Test()
