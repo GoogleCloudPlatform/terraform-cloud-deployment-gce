@@ -31,6 +31,15 @@ allowedLicenses:
 
 sourceFileExtensions:
   - 'Dockerfile'
+  - 'go'
+  - 'html'
+  - 'java'
+  - 'js'
+  - 'properties'
+  - 'scss'
+  - 'sh'
+  - 'sql'
   - 'tf'
+  - 'ts'
   - 'yaml'
   - 'yml'
