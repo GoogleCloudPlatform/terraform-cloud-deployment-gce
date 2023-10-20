@@ -29,8 +29,8 @@ spec:
       tagline: Deploy a change to a live stateful service without disrupting downstream customers (Java on GCE)
       detailed: This solution showcases a live feature change on a Java app, deployed to customers using blue-green managed instance group deployments.
     deploymentDuration:
-      configurationSecs: "60"
-      deploymentSecs: "300"
+      configurationSecs: 60
+      deploymentSecs: 300
     costEstimate:
       description: $140 per month
       url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
