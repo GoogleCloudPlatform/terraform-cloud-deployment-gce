@@ -45,6 +45,12 @@ spec:
       Label: Load Balancer
 
   content:
+    architecture:
+      diagramUrl: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_architecture_v1.png
+      description:
+      - User makes a request to the web application
+      - Load balancer directs request to managed instance group(s) according to configuration
+      - Application returns result based on metadata in database with links to media stored in Cloud Storage Bucket
     subBlueprints:
     - name: backend-config
       location: modules/load-balancer/backend-config
