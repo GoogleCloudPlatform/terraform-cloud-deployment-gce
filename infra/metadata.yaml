@@ -36,13 +36,13 @@ spec:
       url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
     cloudProducts:
     - productId: COMPUTE_SECTION
-      Label: Compute Engine
+      label: Compute Engine
 
     - productId: SQL_SECTION
-      Label: Cloud SQL
+      label: Cloud SQL
 
     - productId: LOAD_BALANCING_SECTION
-      Label: Load Balancer
+      label: Load Balancer
 
   content:
     architecture:
