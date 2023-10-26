@@ -56,6 +56,6 @@ module "mig" {
     host                = ""
     initial_delay_sec   = 200
     request_path        = ""
-    enable_logging      = false
+    enable_logging      = true
   }
 }
