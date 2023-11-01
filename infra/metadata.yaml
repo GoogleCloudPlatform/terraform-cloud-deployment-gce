@@ -43,6 +43,7 @@ spec:
 
     - productId: LOAD_BALANCING_SECTION
       label: Load Balancer
+    singleDeployment: true
 
   content:
     architecture:
