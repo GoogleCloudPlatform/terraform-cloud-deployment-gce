@@ -45,6 +45,7 @@ spec:
       label: Load Balancer
     singleDeployment: true
 
+  icon: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_icon_v1.png
   content:
     architecture:
       diagramUrl: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_architecture_v1.png
