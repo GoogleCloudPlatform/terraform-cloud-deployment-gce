@@ -32,7 +32,7 @@ spec:
       configurationSecs: 60
       deploymentSecs: 300
     costEstimate:
-      description: "cost of this solution is $140" 
+      description: "cost of this solution is $140"
       url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
     cloudProducts:
     - productId: COMPUTE_SECTION
