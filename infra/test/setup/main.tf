@@ -18,7 +18,7 @@ module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 14.0"
 
-  name                    = "ci-annotate-images-with-vertex-ai"
+  name                    = "ci-cloud-deployment-gce"
   random_project_id       = "true"
   org_id                  = var.org_id
   folder_id               = var.folder_id
@@ -30,5 +30,6 @@ module "project" {
     "iam.googleapis.com",
     "storage.googleapis.com",
     "serviceusage.googleapis.com",
+    "logging.googleapis.com",
   ]
 }

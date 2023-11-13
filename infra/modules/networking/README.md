@@ -5,7 +5,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | health\_check\_allow\_ports | The ports to allow for health check. | `list(number)` | n/a | yes |
-| project\_id | GCP project ID. | `string` | n/a | yes |
+| project\_id | Google Cloud project ID. | `string` | n/a | yes |
 | region | The region chosen to be used. | `string` | n/a | yes |
 
 ## Outputs

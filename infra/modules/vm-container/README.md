@@ -10,7 +10,7 @@
 | metadata | metadata to attach to the instance | `map(any)` | `{}` | no |
 | mig\_name | managed instance group name | `string` | n/a | yes |
 | named\_ports | named ports | <pre>list(object(<br>    {<br>      name = string<br>      port = number<br>    }<br>  ))</pre> | n/a | yes |
-| project\_id | GCP project ID. | `string` | n/a | yes |
+| project\_id | Google Cloud project ID. | `string` | n/a | yes |
 | region | The region chosen to be used. | `string` | n/a | yes |
 | service\_account | Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles. | <pre>object({<br>    email  = string<br>    scopes = set(string)<br>  })</pre> | n/a | yes |
 | source\_image | The source image used to create the instance. | `string` | n/a | yes |

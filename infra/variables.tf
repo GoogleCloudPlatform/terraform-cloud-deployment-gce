@@ -15,7 +15,7 @@
  */
 
 variable "project_id" {
-  description = "GCP project ID."
+  description = "Google Cloud project ID."
   type        = string
   validation {
     condition     = var.project_id != ""
@@ -24,13 +24,13 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "GCP region where the cloud resource will be created."
+  description = "Google Cloud region where the cloud resource will be created."
   type        = string
   default     = "us-central1"
 }
 
 variable "zones" {
-  description = "GCP zones where the cloud resource will be created."
+  description = "Google Cloud zones where the cloud resource will be created."
   type        = list(string)
   default     = ["us-central1-a"]
 }
