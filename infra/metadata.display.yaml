@@ -22,12 +22,42 @@ spec:
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce.git
       sourceType: git
+      dir: /infra
   ui:
     input:
       variables:
+        bucket_location:
+          name: bucket_location
+          title: Bucket Location
+          invisible: true
+        data_init_archive_file_name:
+          name: data_init_archive_file_name
+          title: Data Init Archive File Name
+          invisible: true
+        data_init_bucket_name:
+          name: data_init_bucket_name
+          title: Data Init Bucket Name
+          invisible: true
         labels:
           name: labels
           title: Labels
         project_id:
           name: project_id
           title: Project Id
+        region:
+          name: region
+          title: Region
+          invisible: true
+        source_image:
+          name: source_image
+          title: Source Image
+          invisible: true
+        zones:
+          name: zones
+          title: Zones
+          invisible: true
+    runtime:
+      outputs:
+        user_mig_load_balancer_ip:
+          openInNewTab: true
+          showInNotification: false

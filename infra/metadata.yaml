@@ -24,15 +24,35 @@ spec:
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce.git
       sourceType: git
-      dir: /infra/
+      dir: /infra
     description:
       tagline: Deploy a change to a live stateful service without disrupting downstream customers (Java on GCE)
       detailed: This solution showcases a live feature change on a Java app, deployed to customers using blue-green managed instance group deployments.
     deploymentDuration:
       configurationSecs: 60
       deploymentSecs: 300
+    costEstimate:
+      description: "cost of this solution is $140"
+      url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
+    cloudProducts:
+    - productId: COMPUTE_SECTION
+      label: Compute Engine
 
+    - productId: SQL_SECTION
+      label: Cloud SQL
+
+    - productId: LOAD_BALANCING_SECTION
+      label: Load Balancer
+    singleDeployment: true
+
+  icon: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_icon_v1.png
   content:
+    architecture:
+      diagramUrl: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_architecture_v1.png
+      description:
+      - User makes a request to the web application
+      - Load balancer directs request to managed instance group(s) according to configuration
+      - Application returns result based on metadata in database with links to media stored in Cloud Storage Bucket
     subBlueprints:
     - name: backend-config
       location: modules/load-balancer/backend-config
@@ -116,3 +136,4 @@ spec:
     - iam.googleapis.com
     - storage.googleapis.com
     - serviceusage.googleapis.com
+    - logging.googleapis.com
