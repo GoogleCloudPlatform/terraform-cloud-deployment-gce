@@ -47,3 +47,4 @@ EOF
 
 gcloud compute url-maps import ${URL_MAP_NAME} --source=${URL_MAP_CONFIG_FILE} --quiet
 gcloud compute url-maps describe ${URL_MAP_NAME}
+gcloud compute forwarding-rules list --filter="name=${URL_MAP_NAME}"
