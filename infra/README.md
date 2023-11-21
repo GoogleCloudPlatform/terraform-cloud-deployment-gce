@@ -1,3 +1,5 @@
+This project has been moved to [github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/).
+
 # Cloud Deployment on GCE
 
 ## Description
