@@ -32,7 +32,7 @@ spec:
       configurationSecs: 60
       deploymentSecs: 300
     costEstimate:
-      description: $140 per month
+      description: "cost of this solution is $140"
       url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
     cloudProducts:
     - productId: COMPUTE_SECTION
@@ -43,7 +43,9 @@ spec:
 
     - productId: LOAD_BALANCING_SECTION
       label: Load Balancer
+    singleDeployment: true
 
+  icon: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_icon_v1.png
   content:
     architecture:
       diagramUrl: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_architecture_v1.png

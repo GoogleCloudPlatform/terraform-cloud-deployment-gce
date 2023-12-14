@@ -27,10 +27,7 @@ module "load_balancer_frontend_config_user" {
   weighted_backend_services = [
     {
       backend_service_id = module.load_balancer_backend_config_blue.backend_service_id
-    },
-    {
-      backend_service_id = module.load_balancer_backend_config_green.backend_service_id
-    },
+    }
   ]
   labels = var.labels
 }
