@@ -105,7 +105,7 @@ module "database" {
 
   project_id            = data.google_project.project.project_id
   region                = var.region
-  zones                 = var.zones
+  zone                  = var.zone
   vpc_network_self_link = module.networking.vpc_network_self_link
   availability_type     = "ZONAL"
   service_account       = google_service_account.cloud_deployment.email

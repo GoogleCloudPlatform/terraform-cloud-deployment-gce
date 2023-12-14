@@ -99,9 +99,9 @@ spec:
       description: The source image used to create the instance.
       varType: string
       defaultValue: https://www.googleapis.com/compute/beta/projects/hsa-public/global/images/jss-cd-gce-vm-image
-    - name: zones
-      description: Google Cloud zones where the cloud resource will be created.
-      varType: list(string)
+    - name: zone
+      description: Google Cloud zone where the cloud resource will be created.
+      varType: string
       defaultValue:
       - us-central1-a
     outputs:

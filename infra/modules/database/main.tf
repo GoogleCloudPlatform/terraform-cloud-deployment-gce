@@ -25,7 +25,7 @@ resource "google_sql_database_instance" "main" {
       binary_log_enabled = true
     }
     location_preference {
-      zone = var.zones[0]
+      zone = var.zone
     }
     tier      = "db-custom-2-4096"
     disk_type = "PD_SSD"

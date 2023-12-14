@@ -33,7 +33,7 @@ The resources/services/activations/deletions that this module will create/trigge
 | project\_id | Google Cloud project ID. | `string` | n/a | yes |
 | region | Google Cloud region where the cloud resource will be created. | `string` | `"us-central1"` | no |
 | source\_image | The source image used to create the instance. | `string` | `"https://www.googleapis.com/compute/beta/projects/hsa-public/global/images/jss-cd-gce-vm-image"` | no |
-| zones | Google Cloud zones where the cloud resource will be created. | `list(string)` | <pre>[<br>  "us-central1-a"<br>]</pre> | no |
+| zone | Google cloud zone where the resources will be created. | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 

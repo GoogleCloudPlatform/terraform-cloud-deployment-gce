@@ -29,10 +29,10 @@ variable "region" {
   default     = "us-central1"
 }
 
-variable "zones" {
-  description = "Google Cloud zones where the cloud resource will be created."
-  type        = list(string)
-  default     = ["us-central1-a"]
+variable "zone" {
+  description = "Google cloud zone where the resources will be created."
+  type        = string
+  default     = "us-central1-a"
 }
 
 variable "bucket_location" {

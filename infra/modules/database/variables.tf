@@ -24,9 +24,10 @@ variable "region" {
   type        = string
 }
 
-variable "zones" {
-  description = "A list of zones that DB location_preference can be placed in. The list depends on the region chosen."
-  type        = list(string)
+variable "zone" {
+  description = "Google cloud zone where the resources will be created."
+  type        = string
+  default     = "us-central1-a"
 }
 
 variable "vpc_network_self_link" {
