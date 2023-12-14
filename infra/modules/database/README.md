@@ -9,7 +9,7 @@
 | region | The region of the Cloud SQL resource. | `string` | n/a | yes |
 | service\_account | Service Account which should have read permission to access the database password. | `string` | n/a | yes |
 | vpc\_network\_self\_link | network\_self\_link is the self link of the VPC network to which the Cloud SQL instance is connected. | `string` | n/a | yes |
-| zones | A list of zones that DB location\_preference can be placed in. The list depends on the region chosen. | `list(string)` | n/a | yes |
+| zone | Google cloud zone where the resources will be created. | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 

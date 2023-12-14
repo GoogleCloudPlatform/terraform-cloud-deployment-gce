@@ -52,9 +52,9 @@ spec:
           name: source_image
           title: Source Image
           invisible: true
-        zones:
-          name: zones
-          title: Zones
+        zone:
+          name: zone
+          title: Zone
           invisible: true
     runtime:
       outputs:
