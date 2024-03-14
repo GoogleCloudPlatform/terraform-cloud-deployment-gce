@@ -73,6 +73,7 @@ DEPLOYMENT_DESCRIPTION=$(gcloud infra-manager deployments describe "${DEPLOYMENT
 cat <<EOF > input.tfvars
 # Do not edit the region as changing the region can lead to failed deployment.
 region="$(echo "$DEPLOYMENT_DESCRIPTION" | jq -r '.terraformBlueprint.inputValues.region.inputValue')"
+zone="$(echo "$DEPLOYMENT_DESCRIPTION" | jq -r '.terraformBlueprint.inputValues.zone.inputValue')"
 project_id = "${PROJECT_ID}"
 labels = {
   "goog-solutions-console-deployment-name" = "${DEPLOYMENT_NAME}",
