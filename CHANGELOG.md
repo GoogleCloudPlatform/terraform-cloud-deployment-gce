@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/compare/v0.1.0...v0.2.0) (2024-03-18)
+
+
+### Features
+
+* add support for make it mine and deploy via cloudbuild trigger ([#60](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/60)) ([53de088](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/53de088af4ca0aa6e46076b833b9e56d2afc17b4))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency @types/jasmine to ~4.6.0 ([#25](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/25)) ([bcbfa23](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/bcbfa2363de29248ce2b5b8d2f33ee0f7e43665f))
+* **deps:** Update dependency com.google.truth:truth to v1.4.0 ([#20](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/20)) ([f1675b4](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/f1675b448440757430c364940fdbc1a2bc88b1d2))
+* **deps:** Update dependency com.puppycrawl.tools:checkstyle to v10.13.0 ([#27](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/27)) ([de8a5f2](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/de8a5f2fb585a9fb16e7c49256c208fcd856abe7))
+* **deps:** Update dependency karma-chrome-launcher to ~3.2.0 ([#29](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/29)) ([bfead4d](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/bfead4d0abc19d54f3af06409f54fe4d109c07b6))
+* **deps:** Update dependency org.apache.maven.plugins:maven-checkstyle-plugin to v3.3.1 ([#43](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/43)) ([5f56785](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/5f5678595ccfe9113da48e82f7fb7b2cf30e68bf))
+* **deps:** Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.2.5 ([#44](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/issues/44)) ([402f3ba](https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce/commit/402f3baa558ffe96214ca566faa22dd2a882b988))
+
 ## 0.1.0 (2023-12-19)
 
 
