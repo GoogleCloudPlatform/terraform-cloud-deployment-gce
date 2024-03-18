@@ -1,0 +1,8 @@
+roles/config.agent
+roles/editor
+roles/iam.serviceAccountAdmin
+roles/resourcemanager.projectIamAdmin
+roles/secretmanager.admin
+roles/servicenetworking.networksAdmin
+roles/serviceusage.serviceUsageAdmin
+roles/storage.admin
