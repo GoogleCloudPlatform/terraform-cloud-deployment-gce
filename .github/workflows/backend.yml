@@ -48,7 +48,10 @@ jobs:
           cache: 'maven'
           cache-dependency-path: 'api/pom.xml'
 
+      - name: Install dependencies
+        run: mvn -B install -DskipTests
+        working-directory: api
 
       - name: Run tests
-        run: mvn install
+        run: mvn -B test
         working-directory: api
