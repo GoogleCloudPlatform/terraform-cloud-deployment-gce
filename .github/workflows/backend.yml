@@ -44,6 +44,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
           cache: 'maven'
           cache-dependency-path: 'api/pom.xml'
 
