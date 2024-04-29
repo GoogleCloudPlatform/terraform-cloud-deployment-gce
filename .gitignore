@@ -44,7 +44,6 @@ replay_pid*
 
 # NodeJS files
 node_modules/
-frontend/package-lock.json
 .npm
 npm-debug.log
 yarn-error.log
@@ -58,7 +57,7 @@ data/*
 dist
 
 # Miscellaneous
-/.angular/cache
+**/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
