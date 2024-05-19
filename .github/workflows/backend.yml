@@ -19,12 +19,14 @@ on:
     branches:
       - main
     paths:
+      - 'api/pom.xml'
       - 'api/src/**'
       - '.github/workflows/backend.yml'
   pull_request:
     branches:
       - main
     paths:
+      - 'api/pom.xml'
       - 'api/src/**'
       - '.github/workflows/backend.yml'
 
