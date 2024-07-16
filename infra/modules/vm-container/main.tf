@@ -16,7 +16,7 @@
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 7.9"
+  version = "~> 11.0"
 
   name_prefix  = "cloud-deployment-gce-java-temp-"
   source_image = var.source_image
@@ -33,7 +33,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 8.0.1"
+  version = "~> 11.1.0"
 
   project_id        = var.project_id
   region            = var.region
